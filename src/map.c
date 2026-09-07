@@ -16,7 +16,8 @@ typedef struct {
     uint32_t height;
     uint32_t depth;
     float node_scale; // Distance scale per node (1 node = 1 light year)
-    Hazard *hazards;
+    Hazard* hazards;
+    MapNode* nodes;
 } Map;
 
 // Individual node structure
