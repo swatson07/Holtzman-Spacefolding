@@ -1,4 +1,5 @@
 #include <math.h>
+#include <stdbool.h>
 #include <stdint.h>
 
 // Gravitational constant
@@ -8,6 +9,25 @@ const double G = 6.67430e-11;
 typedef struct {
     float x, y, z;
 } Vector3;
+
+// Full map structure
+typedef struct {
+    uint32_t width;
+    uint32_t height;
+    uint32_t depth;
+    float node_scale; // Distance scale per node (1 node = 1 light year)
+    Hazard *hazards;
+} Map;
+
+// Individual node structure
+typedef struct {
+    Vector3 position;
+    float g_cost;
+    float h_cost;
+    float hazard_penalty;
+    bool is_impassable;
+    bool visited;
+} MapNode;
 
 // Hazard type structure
 typedef enum {
