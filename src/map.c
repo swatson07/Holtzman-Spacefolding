@@ -1,6 +1,9 @@
 #include <math.h>
 #include <stdint.h>
 
+// Gravitational constant
+const double G = 6.67430e-11;
+
 // Coordinate structure
 typedef struct {
     float x, y, z;
@@ -29,4 +32,9 @@ typedef struct {
 // Function to calculate the distance between 2 points
 float calculateDistance(Vector3 start, Vector3 end) {
     return sqrt(pow((end.x - start.x), 2) + pow((end.y - start.y), 2) + pow((end.z + start.z), 2));
+}
+
+// Function to calculate a hazard's penalty using gravitational potential energy
+float calculatePenalty(float hazard_mass, float hazard_radius) {
+    return ((G * hazard_mass) / hazard_radius);
 }
