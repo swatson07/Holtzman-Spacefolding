@@ -4,9 +4,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-// Gravitational constant
-static const double G = 6.67430e-11;
-
 // Coordinate structure
 typedef struct {
     float x, y, z;
@@ -32,17 +29,18 @@ typedef struct {
     uint8_t hazard_type;
 } Hazard;
 
-// Individual node structure
+// Individual node structure for pathfinding
 typedef struct {
     Vector3 position;
     float g_cost;
     float h_cost;
+    float f_cost;
     float hazard_penalty;
     bool is_impassable;
     bool visited;
 } MapNode;
 
-// Full map structure
+// Map structure for representation
 typedef struct {
     uint32_t width;
     uint32_t height;
@@ -50,6 +48,12 @@ typedef struct {
     float node_scale; // Distance scale per node (1 node = 1 light year)
     Hazard* hazards;
     MapNode* nodes;
-} Map;
+} MapSector;
+
+// Prototype functions
+float calculateDistance(Vector3 start, Vector3 end);
+MapSector* createMap(uint32_t w, uint32_t h, uint32_t d, float scale);
+void clearMap(MapSector* map);
+int convertNode(MapSector* map, uint32_t x, uint32_t y, uint32_t z);
 
 #endif
