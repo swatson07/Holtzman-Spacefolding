@@ -51,7 +51,7 @@ MapSector* createMap(uint32_t w, uint32_t h, uint32_t d, float scale) {
     return map;
 }
 
-// Function to clear a map
+// Function to clear a map from memory
 void clearMap(MapSector* map) {
     if (!map)
         return;
